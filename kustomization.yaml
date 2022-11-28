@@ -1,0 +1,4 @@
+namespace: wikijs
+
+resources:
+- postgres.yaml

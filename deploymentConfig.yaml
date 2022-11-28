@@ -15,28 +15,25 @@ spec:
       containers:
       - env:
         - name: DB_TYPE
-          value: postgres
+          value: "postgres"
         - name: DB_HOST
-          value: postgresql
-        - name: DB_PORT
-          value: "5432"
+          valueFrom: { secretKeyRef: { name: wikijs-pguser-wikijs, key: host } } 
         - name: DB_SSL
-          value: "false"
+          value: "true"
+       #- name: NODE_TLS_REJECT_UNAUTHORIZED
+         #value: "0"
         - name: DB_NAME
-          valueFrom:
-            secretKeyRef:
-              key: database-name
-              name: postgresql
-        - name: DB_USER
-          valueFrom:
-            secretKeyRef:
-              key: database-user
-              name: postgresql
+          valueFrom: { secretKeyRef: { name: wikijs-pguser-wikijs, key: dbname } }
         - name: DB_PASS
-          valueFrom:
-            secretKeyRef:
-              key: database-password
-              name: postgresql
+          valueFrom: { secretKeyRef: { name: wikijs-pguser-wikijs, key: password } }
+        - name: DB_PORT
+          valueFrom: { secretKeyRef: { name: wikijs-pguser-wikijs, key: port } }
+        - name: DB_USER
+          valueFrom: { secretKeyRef: { name: wikijs-pguser-wikijs, key: user } }
+        - name: DB_PASSWORD
+          valueFrom: { secretKeyRef: { name: wikijs-pguser-wikijs, key: password } }
+        - name: DB_SSL_CA
+          value: <value from getPsqlRootCAString.sh output> 
         image: docker.io/lucadentella/wikijs-ocp4-sideload:2.5
         imagePullPolicy: IfNotPresent
         livenessProbe:
