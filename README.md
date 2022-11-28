@@ -55,10 +55,18 @@ https://access.crunchydata.com/documentation/postgres-operator/v5/quickstart/
     Now we are ready to deploy it.
 6. The deployment file contains a reference to the docker image the author of the mentioned reference made. 
 As mentioned, this can be build from the Dockerfile which is included.
-For convenience we use that image, to user your own, build the image and tag it:
+
+For convenience we can use that image, to user your own, build the image and tag it: 
     docker build -t yourusername/repository-name .
+    I used docker hub :
+    ```bash
+    docker build -t vgerris/wikijs:2 .
+    ```
     then push it to your registry of choice and update the reference in the deployment file
     more info : https://docs.docker.com/engine/reference/commandline/push/
+    ```bash
+    docker push vgerris/wikijs:2
+    ```
 
     Now apply the deployment:
     ```bash
