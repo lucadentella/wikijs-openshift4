@@ -34,11 +34,7 @@ spec:
           valueFrom: { secretKeyRef: { name: wikijs-pguser-wikijs, key: password } }
         - name: DB_SSL_CA
           value: <value from getPsqlRootCAString.sh output> 
-<<<<<<< HEAD
-        image: docker.io/lucadentella/wikijs-ocp4-sideload:2.5
-=======
         image: docker.io/vgerris/wikijs:2
->>>>>>> 663f8bd (Update README for Operator based postgresql with SSL)
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
